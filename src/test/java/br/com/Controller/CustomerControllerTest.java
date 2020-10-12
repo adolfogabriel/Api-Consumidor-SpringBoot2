@@ -69,7 +69,7 @@ class CustomerControllerTest {
     @Test
     void ObterPorId() throws Exception {
         Retorno ret = new Retorno();
-        mockMvc.perform(get("/v2/consumidor/").param("id","")
+        mockMvc.perform(get("/v2/consumidor/").param("id", "")
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(ret)))
                 .andExpect(status().isOk());
@@ -87,7 +87,7 @@ class CustomerControllerTest {
     @Test
     void Alterar() throws Exception {
         Retorno ret = new Retorno();
-        mockMvc.perform(put("/v2/consumidor/").param("id","87")
+        mockMvc.perform(put("/v2/consumidor/").param("id", "87")
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(ret)))
                 .andExpect(status().isOk());
@@ -96,7 +96,7 @@ class CustomerControllerTest {
     @Test
     void Remover() throws Exception {
         Retorno ret = new Retorno();
-        mockMvc.perform(delete("/v2/consumidor/").param("id", "87")
+        mockMvc.perform(delete("/v2/consumidor/" + 87)
                 .contentType("application/json")
                 .content(objectMapper.writeValueAsString(ret)))
                 .andExpect(status().isOk());
