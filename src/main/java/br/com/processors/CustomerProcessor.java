@@ -75,13 +75,13 @@ public class CustomerProcessor {
         Retorno retorno = new Retorno();
         try {
             Customer dados = modelMapper.map(customer, Customer.class);
-            dados.getCidade().toUpperCase();
-            dados.getEndereco().toUpperCase();
-            dados.getGenero().toUpperCase();
-            dados.getSobreNome().toUpperCase();
-            dados.getUf().toUpperCase();
-            dados.getNome().toUpperCase();
-            dados.getNumCpf().toUpperCase();
+            dados.setCidade(dados.getCidade().toUpperCase());
+            dados.setEndereco(dados.getEndereco().toUpperCase());
+            dados.setGenero(dados.getGenero().toUpperCase());
+            dados.setSobreNome(dados.getSobreNome().toUpperCase());
+            dados.setUf(dados.getUf().toUpperCase());
+            dados.setNome(dados.getNome().toUpperCase());
+            dados.setNumCpf(dados.getNumCpf().toUpperCase());
             retorno.setData(customerservice.Save(dados));
             retorno.setSuccess(true);
         } catch (Exception e) {
