@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/v2/consumidor/")
-public class PessoaController {
+public class CustomerController {
 
     @Autowired
     private ICustomerService customerservice;
@@ -30,7 +30,6 @@ public class PessoaController {
     public Retorno ListarTodos() {
         return customerprocessor.ListarTodos();
     }
-
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
     @ApiOperation("Obter consumidor por Id")
