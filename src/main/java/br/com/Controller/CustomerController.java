@@ -1,19 +1,15 @@
 package br.com.Controller;
 
 
-import br.com.entity.Customer;
 import br.com.model.CustomerDTO;
 import br.com.model.CustumerRequest;
 import br.com.model.Retorno;
 import br.com.processors.CustomerProcessor;
 import br.com.service.ICustomerService;
 import io.swagger.annotations.ApiOperation;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @RequestMapping("/v2/consumidor/")
