@@ -38,7 +38,6 @@ public class Customer {
     private String numCpf;
 
     @Column(name = "dth_nascimento")
-    @NotBlank(message = "Data Nascimento obrigatório")
     private java.sql.Timestamp dthNascimento;
 
 
