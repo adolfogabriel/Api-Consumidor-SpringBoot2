@@ -1,0 +1,131 @@
+package br.com.processors;
+
+import br.com.entity.Customer;
+import br.com.model.CustomerDTO;
+import br.com.model.CustumerRequest;
+import br.com.model.Retorno;
+import br.com.service.ICustomerService;
+import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+
+
+@Component
+public class CustomerProcessor {
+
+    @Autowired
+    private ICustomerService customerservice;
+
+    public Retorno ListarTodos() {
+        ModelMapper modelMapper = new ModelMapper();
+        Retorno retorno = new Retorno();
+
+        try {
+            retorno.setSuccess(true);
+            retorno.setData(Arrays.asList(modelMapper.map(customerservice.findAll(), CustomerDTO[].class)));
+
+        } catch (Exception e) {
+            retorno.setSuccess(false);
+            retorno.setData("Erro ao listar consumidor");
+        }
+        return retorno;
+    }
+
+    public Retorno ObterPorId(long id) {
+        Retorno retorno = new Retorno();
+        try {
+            ResponseEntity<Customer> res = customerservice.findbyId(id);
+            if (res.getStatusCodeValue() == 200) {
+                retorno.setSuccess(true);
+                retorno.setData(res.getBody());
+            } else {
+                retorno.setSuccess(false);
+                retorno.setData("Consumidor não encontrado");
+            }
+        } catch (Exception e) {
+            retorno.setSuccess(false);
+            retorno.setData("Erro ao obter Consumidor");
+        }
+        return retorno;
+    }
+
+    public Retorno ObterPorCpf(String cpf) {
+        Retorno retorno = new Retorno();
+        try {
+            ResponseEntity<Customer> res = customerservice.findCpf(cpf);
+            if (res.getStatusCodeValue() == 200) {
+                retorno.setSuccess(true);
+                retorno.setData(res.getBody());
+            } else {
+                retorno.setSuccess(false);
+                retorno.setData("Consumidor não encontrado");
+            }
+        } catch (Exception e) {
+            retorno.setSuccess(false);
+            retorno.setData("Erro ao obter Consumidor");
+        }
+        return retorno;
+    }
+
+    public Retorno CriarConsumidor(CustumerRequest customer) {
+        ModelMapper modelMapper = new ModelMapper();
+        Retorno retorno = new Retorno();
+        try {
+            Customer dados = modelMapper.map(customer, Customer.class);
+            dados.getCidade().toUpperCase();
+            dados.getEndereco().toUpperCase();
+            dados.getGenero().toUpperCase();
+            dados.getSobreNome().toUpperCase();
+            dados.getUf().toUpperCase();
+            dados.getNome().toUpperCase();
+            dados.getNumCpf().toUpperCase();
+            retorno.setData(customerservice.Save(dados));
+            retorno.setSuccess(true);
+        } catch (Exception e) {
+            retorno.setSuccess(false);
+            retorno.setData("Erro ao cadastrar consumidor");
+        }
+        return retorno;
+    }
+
+    public Retorno AlterarConsumidor(CustomerDTO customer) {
+        ModelMapper modelMapper = new ModelMapper();
+        Retorno retorno = new Retorno();
+        try {
+            Customer dados = modelMapper.map(customer, Customer.class);
+            ResponseEntity<Customer> res = customerservice.Alterar(dados);
+            if (res.getStatusCodeValue() == 200) {
+                retorno.setSuccess(true);
+                retorno.setData(res.getBody());
+            } else {
+                retorno.setSuccess(false);
+                retorno.setData("Consumidor não encontrado");
+            }
+        } catch (Exception e) {
+            retorno.setSuccess(false);
+            retorno.setData("Erro ao alterar Consumidor");
+        }
+        return retorno;
+    }
+
+    public Retorno DeletarConsumidor(Long id) {
+        Retorno retorno = new Retorno();
+        try {
+            ResponseEntity<Object> res = customerservice.Deletar(id);
+            if (res.getStatusCodeValue() == 200) {
+                retorno.setSuccess(true);
+                retorno.setData(id);
+            } else {
+                retorno.setSuccess(false);
+                retorno.setData("Consumidor não encontrado");
+            }
+        } catch (Exception e) {
+            retorno.setSuccess(false);
+            retorno.setData("Erro ao remover Consumidor");
+        }
+        return retorno;
+    }
+}
