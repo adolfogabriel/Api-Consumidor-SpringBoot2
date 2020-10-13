@@ -1,6 +1,8 @@
 package br.com.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "customer")
@@ -16,18 +18,23 @@ public class Customer {
     private String cidade;
 
     @Column(name = "uf")
+    @Size(min = 2, max = 2)
     private String uf;
 
     @Column(name = "genero")
+    @Size(min = 1, max = 1)
     private String genero;
 
     @Column(name = "nome")
+    @NotBlank(message = "Nome obrigatório")
     private String nome;
 
     @Column(name = "sobre_nome")
     private String sobreNome;
 
     @Column(name = "num_cpf")
+    @NotBlank(message = "CPF obrigatório")
+    @Size(min = 11, max = 11)
     private String numCpf;
 
     @Column(name = "dth_nascimento")

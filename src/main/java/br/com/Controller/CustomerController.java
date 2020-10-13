@@ -1,23 +1,19 @@
 package br.com.Controller;
 
 
-import br.com.entity.Customer;
 import br.com.model.CustomerDTO;
 import br.com.model.CustumerRequest;
 import br.com.model.Retorno;
 import br.com.processors.CustomerProcessor;
 import br.com.service.ICustomerService;
 import io.swagger.annotations.ApiOperation;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @RequestMapping("/v2/consumidor/")
-public class PessoaController {
+public class CustomerController {
 
     @Autowired
     private ICustomerService customerservice;
@@ -30,7 +26,6 @@ public class PessoaController {
     public Retorno ListarTodos() {
         return customerprocessor.ListarTodos();
     }
-
 
     @RequestMapping(value = "/id/{id}", method = RequestMethod.GET, produces = "application/json")
     @ApiOperation("Obter consumidor por Id")

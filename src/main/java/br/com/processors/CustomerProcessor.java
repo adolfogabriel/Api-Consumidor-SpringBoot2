@@ -5,6 +5,7 @@ import br.com.model.CustomerDTO;
 import br.com.model.CustumerRequest;
 import br.com.model.Retorno;
 import br.com.service.ICustomerService;
+import com.google.common.base.Strings;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -74,16 +75,21 @@ public class CustomerProcessor {
         ModelMapper modelMapper = new ModelMapper();
         Retorno retorno = new Retorno();
         try {
-            Customer dados = modelMapper.map(customer, Customer.class);
-            dados.getCidade().toUpperCase();
-            dados.getEndereco().toUpperCase();
-            dados.getGenero().toUpperCase();
-            dados.getSobreNome().toUpperCase();
-            dados.getUf().toUpperCase();
-            dados.getNome().toUpperCase();
-            dados.getNumCpf().toUpperCase();
-            retorno.setData(customerservice.Save(dados));
-            retorno.setSuccess(true);
+            if (VerificarCpf(customer.getNumCpf())) {
+                Customer dados = modelMapper.map(customer, Customer.class);
+                dados.setCidade(dados.getCidade().toUpperCase());
+                dados.setEndereco(dados.getEndereco().toUpperCase());
+                dados.setGenero(dados.getGenero().toUpperCase());
+                dados.setSobreNome(dados.getSobreNome().toUpperCase());
+                dados.setUf(dados.getUf().toUpperCase());
+                dados.setNome(dados.getNome().toUpperCase());
+                dados.setNumCpf(dados.getNumCpf().toUpperCase());
+                retorno.setData(customerservice.Save(dados));
+                retorno.setSuccess(true);
+            } else {
+                retorno.setSuccess(false);
+                retorno.setData("Cpf já existente ou nulo");
+            }
         } catch (Exception e) {
             retorno.setSuccess(false);
             retorno.setData("Erro ao cadastrar consumidor");
@@ -128,4 +134,15 @@ public class CustomerProcessor {
         }
         return retorno;
     }
+
+    private Boolean VerificarCpf(String cpf) {
+        Boolean retorno = false;
+        try {
+            retorno = customerservice.findCpf(cpf).getStatusCodeValue() == 404;
+        } catch (Exception e) {
+
+        }
+        return retorno;
+    }
+
 }
