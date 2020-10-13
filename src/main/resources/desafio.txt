@@ -1,0 +1,25 @@
+Descreve 3 benefícios de utilizar uma arquitetura orientada a eventos.
+Os eventos são assíncronos, isso permite que os recursos se movam entre as tarefas.
+Escalonamento fácil, serviços são separados em uma arquitetura de eventos quando há necessidade de algum processamento mais volumoso é possível o escalonamento de apenas um serviço específico. 
+Maior apoio a recuperação de falhas, como exemplo nos broker de mensageria quando a uma falha em uma tarefa é possível enviar para outra fila para processamento posterior.
+
+
+Qual o conceito de API Management? 
+É o gerenciamento de todas as api e serviços em uma organização para um uso mas efetivo e melhor aproveitamento de tempo com localização de API’s e uso das API’s.
+
+
+Já utilizou algum API Management? Se sim, quais?
+Sim, Red Hat 3scale API Management.
+
+
+ Já utilizou alguma ferramenta de analytics? Se sim, quais? 
+Não.
+
+No teste prático, quais os benefícios que podemos ter usando eventos persistidos no elasticsearch? Cite três benefícios. 
+Não utilizei a ferramenta elasticsearch.
+
+ocê seria capaz de criar uma visualização usando o kibana com os benefícios citados? 
+
+Seria capaz, uso a ferramenta kibana par cria gráficos de consumo de apis. 
+
+Se for capaz pode criar e enviar junto com o desafio. 
