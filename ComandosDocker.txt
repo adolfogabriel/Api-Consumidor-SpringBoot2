@@ -1,0 +1,5 @@
+docker build -t api-consumidor .
+
+docker run --name  mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=db_desafio -e MYSQL_USER=root -e MYSQL_PASSWORD=root -p 3306:3306  -d mysql:5.6
+
+ocker run -p 9090:9090 -e URL_DATA=jdbc:mysql://mysql:3306/db_desafio  --name api --link mysql -d api-consumidor

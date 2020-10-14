@@ -6,9 +6,10 @@ server:
 
 ## database settings
 ##spring.datasource.driver-class-name: com.mysql.jdbc.Driver
-spring.datasource.url: ${SPRING_DATASOURCE_URL:jdbc:mysql://docker-mysql:3306/db_desafio?autoReconnect=true&useSSL=false}
-spring.datasource.username: ${USERNAME:root}
-spring.datasource.password: ${PASSWORD:root}
+spring.datasource.url: ${URL_DATA:jdbc:mysql://localhost:3306/db_desafio}
+spring.datasource.username: root
+spring.datasource.password: root
+driver-class-name: com.mysql.jdbc.Driver
 spring.jpa.show-sql: true
 
 
