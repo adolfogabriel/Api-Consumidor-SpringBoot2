@@ -48,11 +48,6 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
@@ -148,11 +143,6 @@
     <build>
         <plugins>
             <plugin>
-    <groupId>com.spotify</groupId>
-    <artifactId>dockerfile-maven-plugin</artifactId>
-    <version>1.4.2</version>
-</plugin>
-            <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
@@ -160,9 +150,8 @@
     </build>
     <repositories>
         <repository>
-            <id>cassi-maven</id>
-            <name>CASSI Maven Repo</name>
-            <url>http://nexus.cassi.com.br:8081/repository/cassimaven/</url>
+            <id>maven</id>
+            <url>https://repo.maven.apache.org/maven2/</url>
         </repository>
     </repositories>
 
